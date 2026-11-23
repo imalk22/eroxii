@@ -73,14 +73,9 @@
 
   <section style="padding-top:0" id="team-section">
     <div class="wrap">
-      <div class="head"><p class="eyebrow r">The team</p><h2 class="h2 r" style="--d:1">Founder-led. <span class="soft">Specialist-backed.</span></h2>
-        <p class="sub r" style="--d:2">You work directly with the founder. Behind every project, the right specialists are brought in for the job, so you get senior attention plus the skills the work needs.</p></div>
+      <div class="head"><p class="eyebrow r">The team</p><h2 class="h2 r" style="--d:1">Founder-led. <span class="soft">Team-built.</span></h2>
+        <p class="sub r" style="--d:2">You work directly with the founder, backed by the team that designs, builds and runs every project.</p></div>
       <div class="team" id="team"></div>
-      <div class="roles" id="roles"></div>
-      <div class="grow g r" id="grow" style="margin-top:16px">
-        <div><h3>We're growing.</h3><p>Designers, ad specialists and developers who care about craft: send your portfolio and tell us what you're great at.</p></div>
-        <a class="btn btn-primary" href="mailto:eroxiilk@gmail.com?subject=Joining%20Eroxii">Join the team</a>
-      </div>
     </div>
   </section>
 
@@ -109,13 +104,10 @@ $("#founder").innerHTML=`
     <div class="f-links"><a class="btn btn-primary btn-sm" href="https://www.linkedin.com/in/imesh-samintha/" target="_blank" rel="noopener">LinkedIn ${ico("arrow")}</a>
       <a class="btn btn-ghost btn-sm" href="https://github.com/imalk22" target="_blank" rel="noopener">${ico("gh")} GitHub</a>
       <a class="btn btn-ghost btn-sm" href="https://wa.me/94779730549" target="_blank" rel="noopener">${ico("wa")} WhatsApp</a></div></div>`;
-// Team cards render only from real entries in TEAM (assets/data.js); empty → the "We're growing" card alone.
+// Team cards render from TEAM (assets/data.js); empty → section hidden.
 $("#team").innerHTML=TEAM.map((m,i)=>`<article class="member g r" style="--d:${i%4}"><div class="ph"><img src="${m.photo}" alt="${esc(m.name)}" loading="lazy"></div>
   <div class="mb"><b>${esc(m.name)}</b>${m.role?`<span>${esc(m.role)}</span>`:""}${m.line?`<p>${esc(m.line)}</p>`:""}</div></article>`).join("");
-if(!TEAM.length)$("#team").style.display="none";
-$("#roles").innerHTML=SPECIALISTS.map((s,i)=>`<article class="role g r${s.lead?" lead":""}" style="--d:${i%3};--c:var(${s.c})">
-  <div class="rh">${s.lead?`<img src="${FOUNDER.photo}" alt="${esc(FOUNDER.name)}">`:`<span class="ic">${ico(s.i)}</span>`}<div><b>${s.role}</b><span>${s.lead?s.who:"Specialist · per project"}</span></div></div>
-  <ul>${s.does.map(d=>`<li>${d}</li>`).join("")}</ul></article>`).join("");
+if(!TEAM.length)$("#team-section").style.display="none";
 $("#skills").innerHTML=SKILLS.map(s=>`<span class="skill g">${esc(s)}</span>`).join("");watch(document);
 </script>
 </body>

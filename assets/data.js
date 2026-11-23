@@ -109,15 +109,3 @@ const TEAM=[
  {name:"Pavan Abeysooriya",photo:"images/team/pavan.jpg"},
  {name:"Dinithi Zoysa",photo:"images/team/dinithi.jpg"},
 ];
-// Specialist network: roles brought in per project. Shown while TEAM is empty or alongside it. No invented people.
-const SPECIALISTS=[
- {role:"Strategy & Account Lead",who:"Imesh, founder",i:"target",c:"--blue",does:["Goals, funnels & budgets","Your single point of contact","Monthly results review"],lead:true},
- {role:"Meta Ads Specialist",i:"chart",c:"--green",does:["Campaign build & targeting","A/B tests & scaling","Pixel & conversion tracking"]},
- {role:"Social Media Manager",i:"chat",c:"--pink",does:["Content calendar","Posting & community replies","Growth reporting"]},
- {role:"Graphic Designer",i:"pen",c:"--purple",does:["Posts, ads & flyers","Logos & brand kits","Patterns for tees & packaging"]},
- {role:"AI Creative Artist",i:"spark",c:"--orange",does:["AI product shots","Ad poster variations","Creative testing sets"]},
- {role:"Copywriter",i:"layers",c:"--indigo",does:["Ad hooks & captions","Website copy","English · Sinhala · Tamil"]},
- {role:"Web Developer",i:"browser",c:"--teal",does:["Next.js & WordPress builds","Integrations & booking","Speed & SEO basics"]},
- {role:"App & POS Engineer",i:"pos",c:"--red",does:["POS setup & training","Mobile app builds","Hardware & printers"]},
- {role:"QA & Security",i:"shield",c:"--ink-2",does:["Launch checklist","2FA & access control","Backups & handover"]}
-];
