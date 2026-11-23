@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact — Eroxii</title>
+<meta name="description" content="Get a free quote from Eroxii. WhatsApp +94 77 973 0549 or email eroxiilk@gmail.com. Replies within 24 hours.">
+<meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/data.js"></script>
+</head>
+<body data-page="contact">
+<script src="assets/shell.js"></script>
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="crumbs r"><a href="index.html">Home</a><span>/</span><span>Contact</span></div>
+      <h1 class="h2 r" style="--d:1">Let's build something <span class="soft">great together.</span></h1>
+      <p class="sub r" style="--d:2">Free consultation, no commitment. Tell us what you sell and who you want to reach. You'll get a reply within 24 hours.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="contact g r">
+        <form id="form" novalidate>
+          <div class="two">
+            <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required></div>
+            <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+          </div>
+          <div class="two">
+            <div class="field"><label for="f-svc">Service needed</label><select id="f-svc" name="service"></select></div>
+            <div class="field"><label for="f-budget">Budget (optional)</label><select id="f-budget" name="budget"><option>Not sure yet</option><option>Under LKR 50k</option><option>LKR 50k – 150k</option><option>LKR 150k – 500k</option><option>LKR 500k+</option></select></div>
+          </div>
+          <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" placeholder="Your business, your goal, your timeline…" required></textarea></div>
+          <button class="btn btn-primary" type="submit">Send message</button>
+          <p class="note">Opens your email app, addressed to eroxiilk@gmail.com. Prefer chat? Use WhatsApp.</p>
+        </form>
+        <div>
+          <div class="tiles" style="margin-top:0">
+            <a class="tile" href="https://wa.me/94779730549" target="_blank" rel="noopener"><span class="ic sm" style="--c:var(--green)"><svg class="i"><use href="#i-wa"/></svg></span><div class="t"><b>Phone / WhatsApp</b><span>+94 77 973 0549</span></div><svg class="i"><use href="#i-arrow"/></svg></a>
+            <button class="tile" data-copy="eroxiilk@gmail.com"><span class="ic sm" style="--c:var(--blue)"><svg class="i"><use href="#i-mail"/></svg></span><div class="t"><b>Business email</b><span>eroxiilk@gmail.com</span></div><svg class="i"><use href="#i-plus"/></svg></button>
+            <button class="tile" data-copy="imeshbizz@gmail.com"><span class="ic sm" style="--c:var(--indigo)"><svg class="i"><use href="#i-mail"/></svg></span><div class="t"><b>Email</b><span>imeshbizz@gmail.com</span></div><svg class="i"><use href="#i-plus"/></svg></button>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <a class="tile" href="https://www.linkedin.com/in/imesh-samintha/" target="_blank" rel="noopener"><span class="ic sm" style="--c:#0a66c2"><svg class="i"><use href="#i-in"/></svg></span><div class="t"><b>LinkedIn</b></div></a>
+              <a class="tile" href="https://github.com/imalk22" target="_blank" rel="noopener"><span class="ic sm" style="--c:var(--ink)"><svg class="i"><use href="#i-gh"/></svg></span><div class="t"><b>GitHub</b></div></a>
+            </div>
+          </div>
+          <p class="group-label" style="margin:28px 0 8px 16px">Studio</p>
+          <div class="group g">
+            <div class="row"><span class="ic sm" style="--c:var(--green)"><svg class="i"><use href="#i-pin"/></svg></span><div class="t"><b>Colombo, Sri Lanka</b><span>Working with clients worldwide</span></div><span class="v">GMT+5:30</span></div>
+            <div class="row"><span class="ic sm" style="--c:var(--orange)"><svg class="i"><use href="#i-chat"/></svg></span><div class="t"><b>Response time</b><span>Within 24 hours, usually much sooner</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="head center"><p class="eyebrow r">Before you ask</p><h2 class="h2 r" style="--d:1">Quick answers.</h2></div>
+      <div class="faq g r" id="faqs"></div>
+    </div>
+  </section>
+</main>
+<script>
+$("#faqs").innerHTML=FAQ.map(([q,a])=>`<details><summary>${q}${ico("plus")}</summary><div class="ans"><div><p>${a}</p></div></div></details>`).join("");
+watch(document);
+</script>
+</body>
+</html>

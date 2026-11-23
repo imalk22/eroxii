@@ -1,0 +1,9 @@
+# original, unedited team selfies stay private; styled versions live in images/team/
+images/team/raw/
+# 4K source renders; the site only uses the web/ versions
+concepts/showcase/4k/
+concepts/studio/4k/
+__pycache__/
+.claude/
+Thumbs.db
+.DS_Store

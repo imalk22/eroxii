@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Work — Eroxii</title>
+<meta name="description" content="Websites, web tools, POS systems, mobile apps, Facebook ads, ad strategy, branding, logo concepts, flyers and AI creatives by Eroxii.">
+<meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/data.js"></script>
+</head>
+<body data-page="work">
+<script src="assets/shell.js"></script>
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="crumbs r"><a href="index.html">Home</a><span>/</span><span>Work</span></div>
+      <h1 class="h2 r" style="--d:1">The work. <span class="soft">All of it.</span></h1>
+      <p class="sub r" style="--d:2" id="count"></p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="seg r" role="group" aria-label="Filter work" id="wseg"><span class="thumb" aria-hidden="true"></span></div>
+      <div class="masonry" id="mason"></div>
+    </div>
+  </section>
+
+  <section id="projects" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><p class="eyebrow r">Projects & products</p><h2 class="h2 r" style="--d:1">Case studies. <span class="soft">How they were built.</span></h2></div>
+      <div class="work" id="grid"></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap"><div class="cta-band g r">
+      <div><p class="eyebrow">Your project next?</p><h2 class="h2">Let's add yours.</h2></div>
+      <div class="ctas" style="margin:0"><a class="btn btn-primary" href="contact.html">Start a project</a></div>
+    </div></div>
+  </section>
+</main>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="round x" id="lbx" aria-label="Close"><svg class="i"><use href="#i-x"/></svg></button>
+  <button class="round prev" id="lbp" aria-label="Previous image"><svg class="i"><use href="#i-chev-l"/></svg></button>
+  <button class="round next" id="lbn" aria-label="Next image"><svg class="i"><use href="#i-chev-r"/></svg></button>
+  <figure><img id="lbimg" alt=""><figcaption id="lbcap"></figcaption></figure>
+</div>
+<script>
+// Flatten every category (and sub-tabs) into one list tagged by category key.
+const ALL=WORK.flatMap(w=>(w.subs?w.subs.flatMap(s=>s.items.map(it=>({...it,sub:s.t}))):w.items).map(it=>({...it,k:w.k,kt:w.t})));
+$("#count").textContent=`${ALL.length} pieces across ${WORK.length} categories: websites, live tools, POS, apps, ads, strategy, branding and more.`;
+$("#wseg").insertAdjacentHTML("beforeend",`<button aria-pressed="true" data-f="all">All</button>`+WORK.map(w=>`<button aria-pressed="false" data-f="${w.k}">${w.t}</button>`).join(""));
+$("#mason").innerHTML=ALL.map((it,i)=>`<button class="shot g" data-i="${i}" data-k="${it.k}"><div class="ph wide"><img src="${it.src}" alt="${esc(it.cap)}" loading="lazy" decoding="async"></div><div class="cap"><b>${esc(it.sub||it.kt)}</b><span>${esc(it.cap.split(" · ").pop())}</span></div></button>`).join("");
+let visible=ALL.map((_,i)=>i);
+const filter=k=>{visible=[];$$("#mason .shot").forEach(s=>{const on=k==="all"||s.dataset.k===k;s.classList.toggle("hide",!on);if(on)visible.push(+s.dataset.i)});history.replaceState(null,"",k==="all"?"work.html":"#"+k)};
+const seg=$("#wseg"),thumb=seg.querySelector(".thumb");
+const move=()=>{const b=seg.querySelector('[aria-pressed="true"]');thumb.style.width=b.offsetWidth+"px";thumb.style.transform=`translateX(${b.offsetLeft}px)`;b.scrollIntoView({block:"nearest",inline:"center"})};
+const pick=k=>{seg.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.f===k));move();filter(k)};
+seg.addEventListener("click",e=>{const b=e.target.closest("button");if(b)pick(b.dataset.f)});
+addEventListener("resize",move);setTimeout(move,300);
+const start=location.hash.slice(1);if(WORK.some(w=>w.k===start))pick(start);
+
+// Lightbox over the currently visible items
+const lb=$("#lb");let li=0,from;
+const show=i=>{li=(i+visible.length)%visible.length;const it=ALL[visible[li]];$("#lbimg").src=it.src;$("#lbimg").alt=it.cap;$("#lbcap").innerHTML=`${esc(it.cap)} <span>· ${li+1} of ${visible.length}</span>`};
+$("#mason").addEventListener("click",e=>{const s=e.target.closest(".shot");if(!s)return;from=s;show(visible.indexOf(+s.dataset.i));lb.classList.add("open");document.body.style.overflow="hidden";$("#lbx").focus({preventScroll:true})});
+const close=()=>{lb.classList.remove("open");document.body.style.overflow="";from&&from.focus({preventScroll:true})};
+$("#lbx").onclick=close;$("#lbp").onclick=()=>show(li-1);$("#lbn").onclick=()=>show(li+1);
+lb.addEventListener("click",e=>{if(e.target===lb||e.target.tagName==="FIGURE")close()});
+addEventListener("keydown",e=>{if(!lb.classList.contains("open"))return;if(e.key==="Escape")close();if(e.key==="ArrowLeft")show(li-1);if(e.key==="ArrowRight")show(li+1)});
+let lx=null;lb.addEventListener("touchstart",e=>lx=e.touches[0].clientX,{passive:true});
+lb.addEventListener("touchend",e=>{if(lx===null)return;const dx=e.changedTouches[0].clientX-lx;if(Math.abs(dx)>50)show(li+(dx<0?1:-1));lx=null});
+
+// Project cards → case-study pages
+$("#grid").innerHTML=PROJECTS.map((p,i)=>`<a class="card g r" style="--c:${col(p.c)};--d:${i%2}" href="project.html?p=${p.slug}">
+  <div class="top"><span class="ic">${ico(p.i)}</span>${p.url?`<span class="chip"><span class="dot"></span>Live</span>`:""}</div>
+  <div class="card-body"><div class="tt"><h3>${esc(p.t)}</h3><span class="kind">${esc(p.k)}</span></div><p>${esc(p.d)}</p>
+  <div class="tags">${p.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}<span class="tag" style="margin-left:auto;color:var(--blue-ink)">Case study →</span></div></div></a>`).join("");
+watch(document);
+</script>
+</body>
+</html>

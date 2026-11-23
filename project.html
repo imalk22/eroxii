@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Case study — Eroxii</title>
+<meta name="description" content="Project case study by Eroxii.">
+<meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/data.js"></script>
+</head>
+<body data-page="project">
+<script src="assets/shell.js"></script>
+<main id="case"></main>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="round x" id="lbx" aria-label="Close"><svg class="i"><use href="#i-x"/></svg></button>
+  <figure><img id="lbimg" alt=""><figcaption id="lbcap"></figcaption></figure>
+</div>
+<script>
+const idx=Math.max(0,PROJECTS.findIndex(p=>p.slug===new URLSearchParams(location.search).get("p")));
+const p=PROJECTS[idx],m=CASE_MEDIA[p.t],prev=PROJECTS[(idx-1+PROJECTS.length)%PROJECTS.length],next=PROJECTS[(idx+1)%PROJECTS.length];
+document.title=`${p.t} — Case study — Eroxii`;
+document.querySelector('meta[name="description"]').content=p.d;
+const links=[p.url&&`<a class="btn btn-primary" href="${p.url}" target="_blank" rel="noopener">Visit live site ${ico("arrow")}</a>`,
+             p.gh&&`<a class="btn btn-ghost" href="https://github.com/imalk22/${p.gh}" target="_blank" rel="noopener">${ico("gh")} View code</a>`].filter(Boolean).join("");
+$("#case").innerHTML=`
+<section class="page-hero" style="padding-bottom:0"><div class="wrap" style="--c:${col(p.c)}">
+  <div class="crumbs r"><a href="index.html">Home</a><span>/</span><a href="work.html#projects">Work</a><span>/</span><span>${esc(p.t)}</span></div>
+  <div class="case-hero">
+    <div><p class="eyebrow r" style="--d:1">${esc(p.k)}</p><h1 class="h2 r" style="--d:2">${esc(p.t)}</h1><p class="sub r" style="--d:3">${esc(p.d)}</p>
+      ${links?`<div class="ctas r" style="--d:4;justify-content:flex-start">${links}</div>`:""}</div>
+    <div class="case-facts r" style="--d:3">
+      <div class="g"><b>Type</b><span>${CAT_LABEL[p.cat]}</span></div>
+      <div class="g"><b>Status</b><span>${p.url?"Live":p.gh?"Open source":"Delivered"}</span></div>
+      <div class="g" style="grid-column:span 2"><b>Stack</b><span>${p.tags.join(" · ")}</span></div>
+    </div>
+  </div>
+  <div class="case-cover g r" style="--d:4;${m?"":`background:color-mix(in srgb,var(--c) 12%,transparent)`}">
+    ${m?`<img src="concepts/tools/${m.shot}-desk-1.png" alt="${esc(p.t)} home page">`:`<span class="ic">${ico(p.i)}</span>`}
+  </div>
+</div></section>
+<section style="padding-top:0"><div class="wrap">
+  <div class="case-body">
+    <h3 class="r">Overview</h3>
+    <div class="prose r"><p>${esc(p.d)}</p></div>
+    <h3 class="r">What we built</h3>
+    <ul class="incl r" style="grid-template-columns:1fr">${p.pts.map(x=>`<li style="font-size:17px">${ico("check")}${esc(x)}</li>`).join("")}</ul>
+    <h3 class="r">Tools & tech</h3>
+    <div class="skills r">${p.tags.map(t=>`<span class="skill g">${esc(t)}</span>`).join("")}</div>
+  </div>
+  ${m?`<div class="head" style="margin:clamp(56px,8vw,96px) 0 28px"><p class="eyebrow r">In detail</p><h2 class="h2 r" style="--d:1">Screens, <span class="soft">desktop and mobile.</span></h2></div>
+   <div class="masonry" id="slides">${m.slides.map(n=>`<button class="shot g r" data-src="concepts/studio/web/tools-0${n}.jpg"><div class="ph wide"><img src="concepts/studio/web/tools-0${n}.jpg" alt="${esc(p.t)} screen" loading="lazy"></div></button>`).join("")}</div>`:""}
+  <div class="pager" style="margin-top:clamp(56px,8vw,96px)">
+    <a class="g r" href="project.html?p=${prev.slug}"><span>← Previous</span><b>${esc(prev.t)}</b></a>
+    <a class="g r" href="project.html?p=${next.slug}"><span>Next →</span><b>${esc(next.t)}</b></a>
+  </div>
+</div></section>
+<section style="padding-top:0"><div class="wrap"><div class="cta-band g r">
+  <div><p class="eyebrow">Like this?</p><h2 class="h2">Let's build yours.</h2></div>
+  <div class="ctas" style="margin:0"><a class="btn btn-primary" href="contact.html">Start a project</a><a class="btn btn-ghost" href="work.html">More work</a></div>
+</div></div></section>`;
+watch(document);
+const lb=$("#lb");
+document.addEventListener("click",e=>{const s=e.target.closest("#slides .shot");if(!s)return;$("#lbimg").src=s.dataset.src;$("#lbcap").textContent=p.t;lb.classList.add("open");document.body.style.overflow="hidden"});
+const close=()=>{lb.classList.remove("open");document.body.style.overflow=""};
+$("#lbx").onclick=close;lb.addEventListener("click",e=>{if(e.target===lb||e.target.tagName==="FIGURE")close()});
+addEventListener("keydown",e=>{if(e.key==="Escape"&&lb.classList.contains("open"))close()});
+</script>
+</body>
+</html>

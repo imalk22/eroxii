@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Eroxii showcase slide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1280px;height:720px;overflow:hidden}
+body{font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.slide{position:relative;width:1280px;height:720px;overflow:hidden}
+.dark{background:#070b18;color:#fff}
+.dark::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(900px 560px at 88% -10%,color-mix(in srgb,var(--a) 34%,transparent),transparent 65%),
+  radial-gradient(700px 500px at 104% 108%,color-mix(in srgb,var(--a2) 22%,transparent),transparent 60%),
+  radial-gradient(520px 420px at -6% 112%,rgba(224,64,251,.12),transparent 70%)}
+.light{background:#f5f7fb;color:#0b1733}
+.light::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(820px 540px at 92% -8%,color-mix(in srgb,var(--a) 20%,transparent),transparent 65%),
+  radial-gradient(700px 520px at -8% 110%,rgba(224,64,251,.12),transparent 62%),
+  radial-gradient(700px 500px at 102% 104%,color-mix(in srgb,var(--a2) 14%,transparent),transparent 60%)}
+.left{position:absolute;left:72px;top:50%;transform:translateY(-50%);width:400px;z-index:3}
+.logo-big{width:168px;height:96px;border-radius:22px;background:#fff;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:30px;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.logo-big svg{width:34px;height:34px}
+.logo-big b{font-size:27px;color:#0b1733;font-weight:700;letter-spacing:-.04em}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;height:36px;padding:0 16px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:26px}
+.dark .eyebrow{background:color-mix(in srgb,var(--a) 16%,transparent);color:color-mix(in srgb,var(--a) 55%,#fff);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--a) 35%,transparent)}
+.light .eyebrow{background:color-mix(in srgb,var(--a) 10%,#fff);color:color-mix(in srgb,var(--a) 85%,#000);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--a) 22%,transparent)}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+h1{font-size:50px;line-height:1.06;font-weight:800;letter-spacing:-.045em}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--a),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.dark h1 em{background-image:linear-gradient(90deg,color-mix(in srgb,var(--a) 70%,#fff),color-mix(in srgb,var(--a2) 85%,#fff))}
+h1 i{font-style:normal;color:#e040fb}
+.desc{font-size:17px;line-height:1.55;margin-top:20px}
+.dark .desc{color:#a6b0c6}.light .desc{color:#5b6680}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.chip{height:32px;padding:0 14px;border-radius:999px;display:inline-flex;align-items:center;font-size:14px;font-weight:500}
+.dark .chip{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);color:#e6eaf3}
+.light .chip{background:#fff;box-shadow:inset 0 0 0 1px rgba(11,23,51,.1);color:#24304d}
+.logo-sm{position:absolute;left:48px;bottom:40px;height:46px;padding:0 16px;border-radius:12px;background:#fff;display:flex;align-items:center;gap:6px;z-index:3;box-shadow:0 6px 20px rgba(0,0,0,.12)}
+.logo-sm svg{width:20px;height:20px}
+.logo-sm b{font-size:17px;color:#0b1733;font-weight:700;letter-spacing:-.04em}
+.count{position:absolute;right:48px;bottom:44px;font-size:14px;font-weight:500;letter-spacing:.06em;z-index:3}
+.dark .count{color:#6c7894}.light .count{color:#8a93a8}
+
+/* Browser frame */
+.browser{position:absolute;left:560px;top:96px;width:800px;height:528px;border-radius:14px;overflow:hidden;z-index:1;box-shadow:0 40px 80px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.06)}
+.light .browser{box-shadow:0 30px 70px rgba(30,50,90,.18),0 0 0 1px rgba(11,23,51,.06)}
+.chrome{height:40px;display:flex;align-items:center;padding:0 16px;gap:8px;position:relative}
+.dark .chrome{background:#1b1f2b}.light .chrome{background:#f1f3f8}
+.chrome i{width:12px;height:12px;border-radius:50%}
+.chrome i:nth-child(1){background:#ff5f57}.chrome i:nth-child(2){background:#febc2e}.chrome i:nth-child(3){background:#28c840}
+.url{position:absolute;left:50%;transform:translateX(-50%);width:340px;height:24px;border-radius:7px;font-size:12px;display:grid;place-items:center}
+.dark .url{background:#2a2f3d;color:#c9cfdb}.light .url{background:#e3e7ef;color:#3a4560}
+.browser img{display:block;width:100%;height:488px;object-fit:cover;object-position:top left;background:#fff}
+.zoom{position:absolute;left:500px;top:440px;width:250px;height:170px;border-radius:18px;z-index:2;background-repeat:no-repeat;background-size:320%;
+  box-shadow:0 0 0 5px #fff,0 24px 50px rgba(0,0,0,.35)}
+.zoom::after{content:"";position:absolute;right:-12px;top:-12px;width:34px;height:34px;border-radius:50%;background:var(--a);box-shadow:0 6px 14px rgba(0,0,0,.25);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='6'/%3E%3Cpath d='m20 20-4.5-4.5M11 8.5v5M8.5 11h5'/%3E%3C/svg%3E");background-size:18px;background-position:center;background-repeat:no-repeat}
+/* Card frame */
+.stage{position:absolute;left:530px;right:40px;top:70px;bottom:90px;display:flex;align-items:center;justify-content:center;z-index:1}
+.stage::before{content:"";position:absolute;inset:12%;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--a) 40%,transparent),transparent);filter:blur(30px)}
+.card{position:relative;max-width:100%;max-height:100%;border-radius:20px;box-shadow:0 40px 80px rgba(0,0,0,.38),0 0 0 1px rgba(255,255,255,.08)}
+.light .card{box-shadow:0 30px 70px rgba(30,50,90,.22),0 0 0 1px rgba(11,23,51,.06)}
+.badge{position:absolute;right:22px;bottom:96px;z-index:4;display:flex;align-items:center;gap:12px;padding:12px 16px 12px 12px;border-radius:16px}
+.dark .badge{background:rgba(22,26,38,.9);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),0 16px 40px rgba(0,0,0,.4);color:#fff}
+.light .badge{background:rgba(255,255,255,.95);box-shadow:inset 0 0 0 1px rgba(11,23,51,.06),0 16px 40px rgba(30,50,90,.16)}
+.badge .bi{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--a),var(--a2));display:grid;place-items:center;color:#fff}
+.badge .bi svg{width:16px;height:16px;stroke-width:2.2}
+.badge b{display:block;font-size:14px;font-weight:700}
+.badge span{display:block;font-size:12px;opacity:.65}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="showcase-data.js"></script>
+<script>
+const Q=new URLSearchParams(location.search),C=CATS.find(c=>c.k===Q.get("c"))||CATS[0],N=+(Q.get("i")||1),it=C.items[N-1];
+const [file,frame,h,d,tags,zpos]=it,src="../images/"+file,dark=N%2===1,total=C.items.length,pad=n=>String(n).padStart(2,"0");
+const I={browser:'<rect x="3" y="4.5" width="18" height="15" rx="3"/><path d="M3 9h18"/>',chart:'<path d="M4 20V4M4 20h16"/><path d="m8 15 4-4 3 3 5-6"/>',pen:'<path d="M4 20l1-4L16 5a2.1 2.1 0 0 1 3 3L8 19l-4 1Z"/>',
+  spark:'<path d="M12 3.5 13.8 9 19.5 11 13.8 13 12 18.5 10.2 13 4.5 11 10.2 9Z"/>',pos:'<rect x="4" y="3.5" width="16" height="11" rx="2"/><path d="M8 18.5h8M12 14.5v4"/>',phone:'<rect x="6.5" y="2.5" width="11" height="19" rx="3"/><path d="M10.5 18.5h3"/>'};
+const logo=`<svg viewBox="0 0 24 24"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00c8ff"/><stop offset=".55" stop-color="#7b4dff"/><stop offset="1" stop-color="#ff3dd6"/></linearGradient></defs><path d="M4 3.2c0-.8.9-1.3 1.6-.9l15.3 8.8c.7.4.7 1.4 0 1.8L5.6 21.7c-.7.4-1.6-.1-1.6-.9v-5.5c0-.4.2-.7.5-.9L10 12 4.5 9.6A1 1 0 0 1 4 8.7Z" fill="url(#bg)"/></svg>`;
+const fmt=s=>s.replace(/\*(.+?)\*/g,"<em>$1</em>").replace(/\.$/,"<i>.</i>");
+document.documentElement.style.cssText=`--a:${C.a};--a2:${C.a2}`;
+const visual=frame==="b"
+  ?`<div class="browser"><div class="chrome"><i></i><i></i><i></i><div class="url">${C.name} · eroxii</div></div><img src="${src}"></div>
+    <div class="zoom" style="background-image:url('${src}');background-position:${zpos||"30% 30%"}"></div>`
+  :`<div class="stage"><img class="card" src="${src}"></div>`;
+document.getElementById("root").innerHTML=`<div class="slide ${dark?"dark":"light"}">
+  <div class="left">${N===1?`<div class="logo-big">${logo}<b>eroxii</b></div>`:""}<div class="eyebrow">${C.name}</div>
+    <h1>${fmt(h)}</h1><p class="desc">${d}</p><div class="chips">${tags.map(t=>`<span class="chip">${t}</span>`).join("")}</div></div>
+  ${visual}
+  <div class="badge"><span class="bi"><svg class="i" viewBox="0 0 24 24">${I[C.badge[2]]}</svg></span><div><b>${C.badge[0]}</b><span>${C.badge[1]}</span></div></div>
+  <div class="logo-sm">${logo}<b>eroxii</b></div><div class="count">${pad(N)} / ${pad(total)}</div></div>`;
+</script>
+</body>
+</html>
