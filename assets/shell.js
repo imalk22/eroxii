@@ -76,10 +76,10 @@ document.body.insertAdjacentHTML("beforeend",`<footer><div class="wrap">
    <div><b>Explore</b><a href="work.html#projects">Projects</a><a href="how-we-work.html">How we work</a><a href="index.html#faq">FAQ</a><a href="privacy.html">Privacy</a></div>
    <div><b>Connect</b><a href="https://wa.me/94779730549" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:eroxiilk@gmail.com">eroxiilk@gmail.com</a><a href="https://www.linkedin.com/in/imesh-samintha/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/imalk22" target="_blank" rel="noopener">GitHub</a></div>
   </div>
- </div><div class="wrap foot-base"><span>© <span id="yr"></span> Eroxii · Imesh Samintha</span><span>Made in Colombo, Sri Lanka</span></div></footer>
+ </div><div class="wrap foot-base"><span>© <span id="yr"></span> Eroxii</span><span>Made in Colombo, Sri Lanka</span></div></footer>
 <div class="bot g" id="bot" role="dialog" aria-label="Eroxii assistant" aria-hidden="true">
   <div class="bot-h"><span class="bot-av"><svg class="i"><use href="#i-spark"/></svg></span>
-    <div class="t"><b>Eroxii Assistant</b><span><span class="dot"></span>Online · Imesh replies on WhatsApp</span></div>
+    <div class="t"><b>Eroxii Assistant</b><span><span class="dot"></span>Online · We reply on WhatsApp</span></div>
     <button class="close" id="botx" aria-label="Close assistant"><svg class="i"><use href="#i-x"/></svg></button></div>
   <div class="bot-log" id="botlog" aria-live="polite"></div>
   <div class="chips" id="chips"></div>
@@ -99,10 +99,10 @@ const WA="https://wa.me/94779730549?text=";
 const waLink=(t,label="Continue on WhatsApp")=>`<a class="inline" href="${WA+encodeURIComponent(t)}" target="_blank" rel="noopener">${ico("wa")} ${label}</a>`;
 const INTENTS=[
   [/^(hi|hello|hey|ayubowan|good (morning|evening|afternoon))\b/i,()=>"Hi! 👋 I'm the Eroxii assistant. Ask me about ads, Facebook pages, design, websites, POS systems or apps."],
-  [/price|cost|how much|budget|rate|package|quote/i,()=>`Every project is quoted to its scope, so you never pay for things you don't need. The consultation is free. Tell Imesh what you need and you'll get a clear quote.<br>${waLink("Hi Eroxii, I'd like a quote for: ")}`],
+  [/price|cost|how much|budget|rate|package|quote/i,()=>`Every project is quoted to its scope, so you never pay for things you don't need. The consultation is free. Tell us what you need and you'll get a clear quote.<br>${waLink("Hi Eroxii, I'd like a quote for: ")}`],
   [/how long|time|when|deadline|fast|weeks?/i,()=>"Most business websites take 2–4 weeks. E-commerce and complex builds take 4–8 weeks. Ad campaigns can usually go live within a few days once your page and creatives are ready."],
   [/\bpos\b|billing|cashier|inventory|barcode|restaurant|pharmacy|shop system/i,()=>"We set up complete POS systems for restaurants, pharmacies, fashion and electronics stores. That covers billing, inventory, barcode and receipt printers, staff training and after-sales support. You can see real screens in the Work section, under POS Systems."],
-  [/page|business manager|account|verify|recover|hack|disabled/i,()=>"We handle Facebook page and Business Manager setup, roles, verification and account security, and we help with recovery issues too. If your account is having trouble right now, message Imesh directly.<br>"+waLink("Hi, I need help with my Facebook page/account: ")],
+  [/page|business manager|account|verify|recover|hack|disabled/i,()=>"We handle Facebook page and Business Manager setup, roles, verification and account security, and we help with recovery issues too. If your account is having trouble right now, message us directly.<br>"+waLink("Hi, I need help with my Facebook page/account: ")],
   [/\bads?\b|meta|facebook|instagram|boost|campaign|leads?|sales|tiktok|google/i,()=>"We plan and run Facebook & Instagram campaigns built around your goal, whether that's sales, leads or bookings. We test creatives and audiences, then move budget to what works. Google and TikTok ads are available too. What do you sell, and who's your ideal customer?"],
   [/pattern|print|t-?shirt|tee|textile|fabric|wrapping|repeat/i,()=>"Yes, we design seamless patterns. Send us your icons or logo and we'll turn them into repeats (tossed, half-drop, brick, hexagon, radial and more) for tees, totes, packaging and gift wrap. You get print-ready SVG, PNG and PDF files. There are 20 samples in Work, under Patterns."],
   [/design|post|creative|logo|brand|banner|flyer|story/i,()=>"We design social posts, stories, banners, ad creatives and logos, all in one consistent brand look. There are samples in the Work section, under Branding & Posts and AI Creatives."],
@@ -112,20 +112,20 @@ const INTENTS=[
   [/tool|calculator|dashboard|automation|custom/i,()=>"We build custom web tools like calculators, dashboards and automations. Examples include TinWise (tax calculators in 3 languages) and Genetics Fitness (fitness calculators). Both are in Projects."],
   [/support|maintenance|after|update|host/i,()=>"Yes, we provide ongoing maintenance, updates, hosting help and priority support after launch."],
   [/international|abroad|country|overseas|remote|australia|\buk\b|\busa?\b/i,()=>"Absolutely. We work with clients worldwide, remotely and across time zones."],
-  [/contact|whatsapp|call|phone|email|talk|human|imesh/i,()=>`You can reach Imesh directly:<br>📞 +94 77 973 0549<br>✉️ eroxiilk@gmail.com<br>${waLink("Hi Imesh, ")}`],
-  [/who|about|founder|experience/i,()=>"Eroxii is run by Imesh Samintha. He's been working with business owners since 2021, covering ads, design, websites and the systems behind them."],
+  [/contact|whatsapp|call|phone|email|talk|human/i,()=>`You can reach us directly:<br>📞 +94 77 973 0549<br>✉️ eroxiilk@gmail.com<br>${waLink("Hi Eroxii, ")}`],
+  [/who|about|founder|experience/i,()=>"Eroxii is a digital studio in Colombo, working with business owners since 2021, covering ads, design, websites and the systems behind them."],
   [/\b(thanks?|thank you|great|cool|ok|okay|nice)\b/i,()=>"You're welcome! Anything else I can help with?"]
 ];
-const CHIPS=["Services","Facebook ads","Website","POS system","Pricing","Talk to Imesh"];
+const CHIPS=["Services","Facebook ads","Website","POS system","Pricing","Talk to us"];
 const log=$("#botlog"),bot=$("#bot"),botbtn=$("#botbtn");let botStarted=false;
 const add=(html,who)=>{const d=document.createElement("div");d.className="bub "+who;d.innerHTML=html;log.append(d);log.scrollTop=log.scrollHeight;return d};
 function reply(q){const typing=document.createElement("div");typing.className="typing";typing.innerHTML="<i></i><i></i><i></i>";log.append(typing);log.scrollTop=log.scrollHeight;
   let a;if(/^services?$|what do you do|offer/i.test(q))a="Here's what we do:<br>• Facebook & Instagram ads<br>• Facebook page management<br>• Social media management<br>• Post & creative design<br>• AI ad creatives<br>• Websites & web apps<br>• POS systems<br>• Mobile apps<br>• Web tools<br>Which one should we talk about?";
-  else{const hit=INTENTS.find(([re])=>re.test(q));a=hit?hit[1]():`Good question. I'll pass it to Imesh so you get an accurate answer.<br>${waLink("Hi Eroxii, "+q)}`}
+  else{const hit=INTENTS.find(([re])=>re.test(q));a=hit?hit[1]():`Good question. I'll pass it to the team so you get an accurate answer.<br>${waLink("Hi Eroxii, "+q)}`}
   setTimeout(()=>{typing.remove();add(a,"them")},650+Math.min(900,a.length*4))}
 function ask(q){q=q.trim();if(!q)return;add(esc(q),"me");reply(q)}
 $("#chips").innerHTML=CHIPS.map(c=>`<button type="button">${c}</button>`).join("");
-$("#chips").addEventListener("click",e=>{const b=e.target.closest("button");if(b)ask(b.textContent==="Talk to Imesh"?"contact":b.textContent)});
+$("#chips").addEventListener("click",e=>{const b=e.target.closest("button");if(b)ask(b.textContent==="Talk to us"?"contact":b.textContent)});
 $("#botform").addEventListener("submit",e=>{e.preventDefault();ask($("#botq").value);$("#botq").value=""});
 function toggleBot(open){bot.classList.toggle("open",open);bot.setAttribute("aria-hidden",!open);botbtn.setAttribute("aria-expanded",open);botbtn.innerHTML=ico(open?"x":"spark");$("#nudge").classList.remove("show");
   if(open&&!botStarted){botStarted=true;setTimeout(()=>add("Hi! 👋 I'm the Eroxii assistant. What would you like to grow: sales, leads or your brand? Pick a topic below or ask me anything.","them"),250)}
