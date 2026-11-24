@@ -96,10 +96,10 @@ document.body.insertAdjacentHTML("beforeend",`<footer><div class="wrap">
   <div class="foot-brand"><a href="index.html" class="brand"><svg><use href="#logo"/></svg>eroxii</a><p>Build · Brand · Scale. Digital marketing, design and web development from Colombo, for clients worldwide.</p></div>
   <div class="foot-cols">
    <div><b>Studio</b><a href="services.html">Services</a><a href="work.html">Work</a><a href="about.html">About us</a><a href="contact.html">Contact</a></div>
-   <div><b>Explore</b><a href="work.html#projects">Projects</a><a href="how-we-work.html">How we work</a><a href="index.html#faq">FAQ</a><a href="privacy.html">Privacy</a></div>
+   <div><b>Explore</b><a href="work.html#projects">Projects</a><a href="how-we-work.html">How we work</a><a href="index.html#faq">FAQ</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a></div>
    <div><b>Connect</b><a href="https://wa.me/94779730549" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:eroxiilk@gmail.com">eroxiilk@gmail.com</a><a href="https://www.linkedin.com/in/imesh-samintha/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/imalk22" target="_blank" rel="noopener">GitHub</a></div>
   </div>
- </div><div class="wrap foot-base"><span>© <span id="yr"></span> Eroxii</span><span>Made in Colombo, Sri Lanka</span></div></footer>
+ </div><div class="wrap foot-base"><span>© <span id="yr"></span> Eroxii</span><span><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></span></div></footer>
 <div class="bot g" id="bot" role="dialog" aria-label="Eroxii assistant" aria-hidden="true">
   <div class="bot-h"><span class="bot-av"><svg class="i"><use href="#i-spark"/></svg></span>
     <div class="t"><b>Eroxii Assistant</b><span><span class="dot"></span>Online · We reply on WhatsApp</span></div>
