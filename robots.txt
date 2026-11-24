@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /legal-docs/
+
+Sitemap: https://www.eroxii.space/sitemap.xml

@@ -43,8 +43,13 @@ PIECES = {
   <div style="position:relative;left:70px">{mark(1060, 'style="filter:drop-shadow(0 30px 80px rgba(123,77,255,.55))"')}</div>
 </div>'''),
     # Facebook cover: 1640x624 (2x of 820x312). Phones crop to the centre ~1230x624, so all text stays centred.
-    "eroxii-facebook-cover": (1640, 624, False, f'''
-<div style="width:1640px;height:624px;position:relative;overflow:hidden;background:#06060a;color:#fff">
+    "eroxii-facebook-cover": (1640, 624, False, None),
+}
+
+
+def cover(w, h):
+    return f'''
+<div style="width:{w}px;height:{h}px;position:relative;overflow:hidden;background:#06060a;color:#fff">
   <div style="position:absolute;width:900px;height:900px;left:-260px;top:-420px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,190,255,.55),transparent)"></div>
   <div style="position:absolute;width:860px;height:860px;right:-240px;top:-380px;border-radius:50%;background:radial-gradient(closest-side,rgba(224,64,251,.45),transparent)"></div>
   <div style="position:absolute;width:900px;height:900px;left:420px;bottom:-640px;border-radius:50%;background:radial-gradient(closest-side,rgba(123,77,255,.55),transparent)"></div>
@@ -59,8 +64,11 @@ PIECES = {
       <span style="padding:11px 22px;border-radius:999px;background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)">+94 77 973 0549</span>
     </div>
   </div>
-</div>'''),
-}
+</div>'''
+
+
+PIECES["eroxii-facebook-cover"] = (1640, 624, False, cover(1640, 624))
+PIECES["og-image"] = (1200, 630, False, cover(1200, 630))
 
 
 def render(name, w, h, transparent, body, scale):
