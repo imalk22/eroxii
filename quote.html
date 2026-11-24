@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quotation — Eroxii</title>
+<meta name="description" content="Create an Eroxii quotation or invoice.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/data.js"></script>
+<style>
+.qgrid{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:24px;align-items:start}
+.qform{padding:20px;border-radius:var(--r-lg);display:grid;gap:14px}
+.qform h3{font-size:15px;margin:6px 0 0}
+.qform .field input,.qform .field select,.qform .field textarea{padding:11px 13px;font-size:15px;border-radius:12px}
+.qform .field textarea{min-height:70px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.item{display:grid;gap:8px;padding:12px;border-radius:14px;background:color-mix(in srgb,var(--surface) 55%,transparent);box-shadow:inset 0 0 0 1px var(--line)}
+.item .row3{grid-template-columns:1fr 1.4fr auto}
+.item .x{width:40px;height:44px;border-radius:12px;display:grid;place-items:center;color:var(--red)}
+.item .x:hover{background:var(--line)}
+.qbar{display:flex;gap:8px;flex-wrap:wrap}
+.qbar .btn{flex:1;justify-content:center}
+.seg2{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:12px;background:var(--line)}
+.seg2 button{padding:9px;border-radius:9px;font-size:14px;font-weight:600;color:var(--muted)}
+.seg2 button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+details summary{cursor:pointer;font-size:14px;font-weight:600;color:var(--blue-ink)}
+details[open] summary{margin-bottom:10px}
+/* The document: always paper-white, A4 proportions */
+.paperwrap{position:sticky;top:76px}
+.paper{background:#fff;color:#1d1d1f;width:100%;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.25);container-type:inline-size}
+.doc{padding:6.5cqw 7cqw;font-size:1.55cqw;line-height:1.5;min-height:calc(100cqw*297/210);display:flex;flex-direction:column;font-family:"Segoe UI",Inter,system-ui,sans-serif;letter-spacing:0}
+.lh{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:2.2cqw;border-bottom:.35cqw solid #7b4dff}
+.lh .bn{display:flex;align-items:center;gap:1.3cqw;font-weight:700;font-size:3.4cqw;letter-spacing:-.02em}
+.lh .bn svg{width:3.6cqw;height:3.6cqw}
+.lh .tg{font-size:1.25cqw;color:#6e6e73;margin-top:.4cqw}
+.lh .ct{text-align:right;font-size:1.3cqw;color:#6e6e73;line-height:1.55}
+.dt{display:flex;justify-content:space-between;align-items:flex-end;margin:4cqw 0 3cqw}
+.dt h2{font-size:4.4cqw;letter-spacing:-.03em;line-height:1}
+.dt .no{font-size:1.45cqw;color:#6e6e73;text-align:right;line-height:1.7}
+.dt .no b{color:#1d1d1f}
+.pp{display:grid;grid-template-columns:1fr 1fr;gap:3cqw;margin-bottom:3cqw}
+.pp small{display:block;font-size:1.1cqw;font-weight:700;letter-spacing:.08em;color:#86868b;text-transform:uppercase;margin-bottom:.6cqw}
+.pp div{white-space:pre-line}
+.proj{font-weight:600;margin-bottom:1.6cqw}
+table.li{width:100%;border-collapse:collapse;font-size:1.45cqw}
+.li th{text-align:left;font-size:1.15cqw;letter-spacing:.06em;text-transform:uppercase;color:#6e6e73;background:#f5f5f7;padding:1.2cqw 1.3cqw;font-weight:700}
+.li td{padding:1.3cqw;border-bottom:.15cqw solid #e5e5ea;vertical-align:top}
+.li td small{display:block;color:#6e6e73;font-size:1.25cqw;margin-top:.3cqw;white-space:pre-line}
+.li .n{text-align:right;white-space:nowrap}
+.tot{margin:2cqw 0 0 auto;width:48%;font-size:1.5cqw}
+.tot div{display:flex;justify-content:space-between;padding:.7cqw 1.3cqw}
+.tot .gt{background:#1d1d1f;color:#fff;border-radius:1cqw;font-weight:700;font-size:1.9cqw;padding:1.3cqw;margin-top:.6cqw}
+.tot .dp{color:#7b4dff;font-weight:600}
+.notes{margin-top:3cqw;display:grid;grid-template-columns:1fr 1fr;gap:3cqw;font-size:1.3cqw;color:#424245}
+.notes h4{font-size:1.15cqw;letter-spacing:.08em;text-transform:uppercase;color:#86868b;margin-bottom:.6cqw}
+.notes p,.notes li{white-space:pre-line}
+.notes ul{padding-left:2cqw}
+.sig{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;padding-top:3cqw}
+.sig div{width:40%;border-top:.15cqw solid #86868b;padding-top:.8cqw;font-size:1.2cqw;color:#6e6e73}
+.ft{margin-top:2.5cqw;padding-top:1.4cqw;border-top:.15cqw solid #e5e5ea;font-size:1.15cqw;color:#86868b;text-align:center}
+@media (max-width:980px){.qgrid{grid-template-columns:1fr}.paperwrap{position:static}}
+@page{size:A4;margin:0}
+@media print{
+  html,body{background:#fff!important}
+  body>*:not(main),main>section:first-child,.qform{display:none!important}
+  main>section,.wrap,.qgrid{padding:0!important;margin:0!important;display:block;max-width:none}
+  .paperwrap{position:static}
+  .paper{width:210mm;border-radius:0;box-shadow:none}
+  .doc{min-height:297mm}
+  .li tr,.tot,.notes,.sig{break-inside:avoid}
+}
+</style>
+</head>
+<body data-page="quote">
+<script src="assets/shell.js"></script>
+<main>
+  <section class="page-hero" style="padding-bottom:24px">
+    <div class="wrap">
+      <div class="crumbs r"><a href="index.html">Home</a><span>/</span><span>Quotation</span></div>
+      <h1 class="h2 r" style="--d:1">Quotation <span class="soft">builder.</span></h1>
+      <p class="sub r" style="--d:2">Add the client, the services and your prices. The quote builds itself on Eroxii letterhead. Press Download PDF to save or send it.</p>
+    </div>
+  </section>
+  <section style="padding-top:0">
+    <div class="wrap qgrid">
+      <form class="qform g" id="qf" autocomplete="off" onsubmit="return false">
+        <div class="seg2" role="group" aria-label="Document type"><button type="button" data-type="Quotation" aria-pressed="true">Quotation</button><button type="button" data-type="Invoice" aria-pressed="false">Invoice</button></div>
+        <div class="row3">
+          <div class="field"><label for="q-no">Number</label><input id="q-no" name="no"></div>
+          <div class="field"><label for="q-date">Date</label><input id="q-date" name="date" type="date"></div>
+          <div class="field"><label for="q-valid" id="l-valid">Valid until</label><input id="q-valid" name="valid" type="date"></div>
+        </div>
+
+        <h3>Client</h3>
+        <div class="two">
+          <div class="field"><label for="q-cname">Client name</label><input id="q-cname" name="cname"></div>
+          <div class="field"><label for="q-ccomp">Company</label><input id="q-ccomp" name="ccomp"></div>
+        </div>
+        <div class="two">
+          <div class="field"><label for="q-cmail">Email</label><input id="q-cmail" name="cmail" type="email"></div>
+          <div class="field"><label for="q-cphone">Phone</label><input id="q-cphone" name="cphone" type="tel"></div>
+        </div>
+        <div class="field"><label for="q-caddr">Address</label><textarea id="q-caddr" name="caddr" style="min-height:56px"></textarea></div>
+        <div class="field"><label for="q-proj">Project title</label><input id="q-proj" name="proj" placeholder="e.g. Business website + 3 months of Meta ads"></div>
+
+        <h3>Services & prices</h3>
+        <div id="items" style="display:grid;gap:10px"></div>
+        <button type="button" class="btn btn-ghost btn-sm" id="add" style="justify-self:start">+ Add service</button>
+
+        <h3>Totals</h3>
+        <div class="row3">
+          <div class="field"><label for="q-cur">Currency</label><select id="q-cur" name="cur"><option>LKR</option><option>USD</option><option>EUR</option><option>GBP</option><option>AUD</option></select></div>
+          <div class="field"><label for="q-disc">Discount %</label><input id="q-disc" name="disc" type="number" min="0" max="100" step="0.5" value="0"></div>
+          <div class="field"><label for="q-tax">Tax / VAT %</label><input id="q-tax" name="tax" type="number" min="0" max="100" step="0.5" value="0"></div>
+        </div>
+        <div class="field"><label for="q-dep">Deposit to start (%)</label><input id="q-dep" name="dep" type="number" min="0" max="100" step="5" value="50"></div>
+
+        <h3>Notes & terms</h3>
+        <div class="field"><label for="q-notes">Notes for the client</label><textarea id="q-notes" name="notes" placeholder="Timeline, what's included, anything the client should know"></textarea></div>
+        <div class="field"><label for="q-terms">Terms</label><textarea id="q-terms" name="terms"></textarea></div>
+
+        <details>
+          <summary>Payment details & signature (saved on this device)</summary>
+          <div style="display:grid;gap:12px">
+            <div class="field"><label for="q-bank">Bank / payment details</label><textarea id="q-bank" name="bank" placeholder="Bank name&#10;Account name&#10;Account number&#10;Branch"></textarea></div>
+            <div class="field"><label for="q-by">Prepared by</label><input id="q-by" name="by" placeholder="Name, title"></div>
+          </div>
+        </details>
+
+        <div class="qbar">
+          <button type="button" class="btn btn-primary" id="print">Download PDF</button>
+          <button type="button" class="btn btn-ghost" id="new">New quote</button>
+        </div>
+        <p class="note" style="margin:0">Your draft is saved in this browser only. In the print window, choose <b>Save as PDF</b> and turn off headers and footers.</p>
+      </form>
+
+      <div class="paperwrap"><div class="paper"><div class="doc" id="doc"></div></div></div>
+    </div>
+  </section>
+</main>
+<script>
+const KEY="eroxii-quote",SET="eroxii-quote-settings",PRICE="eroxii-quote-prices";
+const load=k=>{try{return JSON.parse(localStorage.getItem(k))||null}catch(e){return null}};
+const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const iso=d=>new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10);
+const addDays=(s,n)=>{const d=new Date(s);d.setDate(d.getDate()+n);return iso(d)};
+const DEF_TERMS="50% deposit to start, balance on completion before launch or final files.\nIncludes 2 rounds of revisions.\nThird-party costs (ad spend, domain, hosting) are paid by the client.\nWork is covered by Eroxii's Client Service Agreement and Terms (eroxii.space/terms).";
+const nextNo=t=>{const d=new Date(),y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,"0");return `${t==="Invoice"?"INV":"QT"}-${y}${m}-${String(Math.floor(Math.random()*900)+100)}`};
+const fresh=()=>{const today=iso(new Date());return{type:"Quotation",no:nextNo("Quotation"),date:today,valid:addDays(today,30),cname:"",ccomp:"",cmail:"",cphone:"",caddr:"",proj:"",
+  cur:"LKR",disc:0,tax:0,dep:50,notes:"",terms:DEF_TERMS,items:[{svc:SERVICES[5].t,desc:"",qty:1,price:""}]}};
+let Q=load(KEY)||fresh();
+const S=Object.assign({bank:"",by:""},load(SET));
+const prices=load(PRICE)||{};
+const f=$("#qf");
+
+/* ---- form <-> state ---- */
+const fill=()=>{for(const k of ["no","date","valid","cname","ccomp","cmail","cphone","caddr","proj","cur","disc","tax","dep","notes","terms"])f.elements[k].value=Q[k]??"";
+  f.elements.bank.value=S.bank;f.elements.by.value=S.by;
+  $$(".seg2 button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.type===Q.type));renderItems()};
+const svcOpts=sel=>SERVICES.map(s=>`<option${s.t===sel?" selected":""}>${esc(s.t)}</option>`).join("")+`<option value="__custom"${SERVICES.some(s=>s.t===sel)?"":" selected"}>Custom item…</option>`;
+function renderItems(){
+  $("#items").innerHTML=Q.items.map((it,i)=>{const custom=!SERVICES.some(s=>s.t===it.svc);return `<div class="item" data-i="${i}">
+    <div class="field"><label>Service</label><select data-k="pick">${svcOpts(it.svc)}</select></div>
+    ${custom?`<div class="field"><label>Item name</label><input data-k="svc" value="${esc(it.svc)}"></div>`:""}
+    <div class="field"><label>Description</label><textarea data-k="desc" style="min-height:52px" placeholder="What's included">${esc(it.desc)}</textarea></div>
+    <div class="row3"><div class="field"><label>Qty</label><input data-k="qty" type="number" min="0" step="1" value="${esc(it.qty)}"></div>
+      <div class="field"><label>Unit price</label><input data-k="price" type="number" min="0" step="any" value="${esc(it.price)}" placeholder="0"></div>
+      <button type="button" class="x" data-k="del" aria-label="Remove this service"${Q.items.length<2?" disabled style=\"opacity:.3\"":""}>${ico("x")}</button></div></div>`}).join("")}
+$("#items").addEventListener("input",e=>{const el=e.target,box=el.closest(".item");if(!box)return;const it=Q.items[box.dataset.i],k=el.dataset.k;
+  if(k==="pick"){it.svc=el.value==="__custom"?"":el.value;if(prices[it.svc]&&!it.price)it.price=prices[it.svc];renderItems()}
+  else{it[k]=el.value;if(k==="price"&&it.svc&&el.value)prices[it.svc]=el.value}
+  update()});
+$("#items").addEventListener("click",e=>{const b=e.target.closest('[data-k="del"]');if(!b||Q.items.length<2)return;Q.items.splice(b.closest(".item").dataset.i,1);renderItems();update()});
+$("#add").onclick=()=>{Q.items.push({svc:SERVICES[0].t,desc:"",qty:1,price:prices[SERVICES[0].t]||""});renderItems();update();$("#items").lastElementChild.querySelector("select").focus()};
+f.addEventListener("input",e=>{const k=e.target.name;if(!k)return;if(k==="bank"||k==="by"){S[k]=e.target.value;save(SET,S)}else Q[k]=e.target.value;update()});
+$$(".seg2 button").forEach(b=>b.onclick=()=>{Q.type=b.dataset.type;Q.no=nextNo(Q.type);
+  if(Q.type==="Invoice"&&Q.terms===DEF_TERMS)Q.terms="Payment due within 7 days of the invoice date.\nPlease use the invoice number as the payment reference.";
+  else if(Q.type==="Quotation"&&Q.terms.startsWith("Payment due within 7 days"))Q.terms=DEF_TERMS;
+  Q.valid=Q.type==="Invoice"?addDays(Q.date,7):addDays(Q.date,30);fill();update()});
+$("#new").onclick=()=>{if(!confirmNew())return;Q=fresh();fill();update()};
+const confirmNew=()=>!Q.cname&&!Q.items.some(i=>i.price)||window.confirm("Start a new quote? The current one will be cleared.");
+$("#print").onclick=()=>{const t=document.title;document.title=`${Q.type} ${Q.no}${Q.ccomp||Q.cname?" — "+(Q.ccomp||Q.cname):""}`;window.print();document.title=t};
+
+/* ---- document preview ---- */
+const money=v=>{try{return new Intl.NumberFormat("en-LK",{style:"currency",currency:Q.cur,minimumFractionDigits:2}).format(v)}catch(e){return Q.cur+" "+(+v).toFixed(2)}};
+const nice=s=>s?new Date(s).toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"}):"—";
+const num=v=>Math.max(0,parseFloat(v)||0);
+function update(){
+  save(KEY,Q);save(PRICE,prices);
+  $("#l-valid").textContent=Q.type==="Invoice"?"Due date":"Valid until";
+  const rows=Q.items.filter(i=>i.svc||i.desc||num(i.price));
+  const sub=rows.reduce((a,i)=>a+num(i.qty)*num(i.price),0),disc=sub*num(Q.disc)/100,taxed=(sub-disc)*num(Q.tax)/100,total=sub-disc+taxed,dep=total*num(Q.dep)/100;
+  const client=[Q.ccomp,Q.cname,Q.caddr,[Q.cmail,Q.cphone].filter(Boolean).join(" · ")].filter(Boolean).map(esc).join("\n")||"Client name";
+  $("#doc").innerHTML=`
+  <div class="lh"><div><div class="bn"><svg viewBox="0 0 24 24"><defs><linearGradient id="qg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00c8ff"/><stop offset=".55" stop-color="#7b4dff"/><stop offset="1" stop-color="#ff3dd6"/></linearGradient></defs><path fill="url(#qg)" d="M4 3.2c0-.8.9-1.3 1.6-.9l15.3 8.8c.7.4.7 1.4 0 1.8L5.6 21.7c-.7.4-1.6-.1-1.6-.9v-5.5c0-.4.2-.7.5-.9L10 12 4.5 9.6A1 1 0 0 1 4 8.7Z"/></svg>Eroxii</div><div class="tg">Digital marketing, design &amp; web development</div></div>
+    <div class="ct">Colombo, Sri Lanka<br>eroxiilk@gmail.com<br>+94 77 973 0549<br>eroxii.space</div></div>
+  <div class="dt"><h2>${Q.type}</h2><div class="no">No. <b>${esc(Q.no)}</b><br>Date <b>${nice(Q.date)}</b><br>${Q.type==="Invoice"?"Due":"Valid until"} <b>${nice(Q.valid)}</b></div></div>
+  <div class="pp"><div><small>${Q.type==="Invoice"?"Bill to":"Prepared for"}</small><div>${client}</div></div>
+    <div><small>From</small><div>Eroxii\nColombo, Sri Lanka\neroxiilk@gmail.com${S.by?"\n"+esc(S.by):""}</div></div></div>
+  ${Q.proj?`<div class="proj">${esc(Q.proj)}</div>`:""}
+  <table class="li"><thead><tr><th style="width:5%">#</th><th>Service</th><th class="n" style="width:9%">Qty</th><th class="n" style="width:18%">Unit price</th><th class="n" style="width:19%">Amount</th></tr></thead>
+  <tbody>${rows.length?rows.map((i,n)=>`<tr><td>${n+1}</td><td><b>${esc(i.svc||"Item")}</b>${i.desc?`<small>${esc(i.desc)}</small>`:""}</td><td class="n">${esc(num(i.qty))}</td><td class="n">${money(num(i.price))}</td><td class="n">${money(num(i.qty)*num(i.price))}</td></tr>`).join(""):`<tr><td colspan="5" style="color:#86868b">Add services on the left</td></tr>`}</tbody></table>
+  <div class="tot"><div><span>Subtotal</span><span>${money(sub)}</span></div>
+    ${num(Q.disc)?`<div><span>Discount (${num(Q.disc)}%)</span><span>− ${money(disc)}</span></div>`:""}
+    ${num(Q.tax)?`<div><span>Tax / VAT (${num(Q.tax)}%)</span><span>${money(taxed)}</span></div>`:""}
+    <div class="gt"><span>Total</span><span>${money(total)}</span></div>
+    ${Q.type==="Quotation"&&num(Q.dep)?`<div class="dp"><span>Deposit to start (${num(Q.dep)}%)</span><span>${money(dep)}</span></div>`:""}</div>
+  <div class="notes">
+    <div>${Q.notes?`<h4>Notes</h4><p>${esc(Q.notes)}</p>`:""}${S.bank?`<h4 style="margin-top:${Q.notes?"2cqw":"0"}">Payment details</h4><p>${esc(S.bank)}</p>`:""}</div>
+    <div>${Q.terms?`<h4>Terms</h4><ul>${Q.terms.split("\n").filter(Boolean).map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`:""}</div></div>
+  <div class="sig"><div>${S.by?esc(S.by):"Authorised signature"} — Eroxii</div><div>${Q.type==="Invoice"?"Received by":"Accepted by client"} · Date</div></div>
+  <div class="ft">Thank you for choosing Eroxii · Build. Brand. Scale.</div>`;
+}
+fill();update();
+</script>
+</body>
+</html>
