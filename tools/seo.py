@@ -11,20 +11,20 @@ START, END = "<!-- seo:start -->", "<!-- seo:end -->"
 
 # file: (title, description, index in search?, sitemap priority)
 PAGES = {
-    "index.html": ("Eroxii | Digital Marketing & Web Design Agency in Sri Lanka",
-                   "Eroxii is a digital marketing and web design agency in Colombo, Sri Lanka. Facebook & Instagram ads, social media management, websites, POS systems and apps.", True, "1.0"),
-    "services.html": ("Digital Marketing & Web Design Services in Sri Lanka | Eroxii",
-                      "Facebook ads, social media management, graphic design, AI creatives, website design, POS systems and mobile apps for businesses in Sri Lanka. Free quote.", True, "0.9"),
-    "work.html": ("Portfolio: Websites, Ads & Branding | Eroxii Sri Lanka",
-                  "See websites, web tools, POS systems, Facebook ad campaigns, branding and AI creatives built by Eroxii, a digital studio in Colombo, Sri Lanka.", True, "0.8"),
-    "about.html": ("About Eroxii | Digital Studio Team in Colombo, Sri Lanka",
-                   "Meet the Eroxii team: designers, developers and marketers in Colombo, Sri Lanka, helping businesses get found, look credible and sell more online since 2021.", True, "0.7"),
-    "how-we-work.html": ("How We Work | Eroxii Digital Studio, Colombo",
-                         "How Eroxii runs projects for clients in Sri Lanka and abroad: clear scope, weekly updates, a launch checklist and support after launch.", True, "0.6"),
-    "contact.html": ("Contact Eroxii | Free Quote for Ads & Websites in Sri Lanka",
-                     "Get a free quote for Facebook ads, social media, web design or a POS system in Sri Lanka. WhatsApp +94 77 973 0549 or email eroxiilk@gmail.com.", True, "0.8"),
-    "terms.html": ("Terms | Eroxii", "The terms for using the Eroxii website and working with the Eroxii studio in Sri Lanka.", True, "0.2"),
-    "privacy.html": ("Privacy Policy | Eroxii", "How Eroxii handles your information, in line with Sri Lanka's Personal Data Protection Act, No. 9 of 2022.", True, "0.2"),
+    "index.html": ("Eroxii | Web Design & Digital Marketing Agency, Worldwide",
+                   "Eroxii is a web design and digital marketing agency working with businesses worldwide, from Sri Lanka to the UK, US, Australia and the Middle East. Ads, social media, websites, POS and apps.", True, "1.0"),
+    "services.html": ("Web Design, Facebook Ads & Social Media Services | Eroxii",
+                      "Facebook & Instagram ads, social media management, graphic design, AI creatives, website design, POS systems and mobile apps for businesses in any country. Free quote.", True, "0.9"),
+    "work.html": ("Portfolio: Websites, Ads & Branding | Eroxii",
+                  "Websites, web tools, POS systems, Facebook ad campaigns, branding and AI creatives built by Eroxii for clients in Sri Lanka and around the world.", True, "0.8"),
+    "about.html": ("About Eroxii | Global Digital Studio, Based in Sri Lanka",
+                   "Meet the Eroxii team: designers, developers and marketers based in Colombo, Sri Lanka, working remotely with businesses worldwide since 2021.", True, "0.7"),
+    "how-we-work.html": ("How We Work Remotely With Clients Worldwide | Eroxii",
+                         "How Eroxii runs projects for clients in any country and time zone: clear scope, weekly updates over WhatsApp, Zoom or email, a launch checklist and support after launch.", True, "0.6"),
+    "contact.html": ("Contact Eroxii | Free Quote for Websites & Ads, Worldwide",
+                     "Get a free quote for web design, Facebook ads, social media or a POS system, wherever you are. WhatsApp +94 77 973 0549 or email eroxiilk@gmail.com.", True, "0.8"),
+    "terms.html": ("Terms | Eroxii", "The terms for using the Eroxii website and working with the Eroxii studio.", True, "0.2"),
+    "privacy.html": ("Privacy Policy | Eroxii", "How Eroxii handles your information, including under Sri Lanka's Personal Data Protection Act, No. 9 of 2022.", True, "0.2"),
     "project.html": (None, None, True, None),     # title/description set per project by the page itself
     "quote.html": ("Quotation | Eroxii", "Create an Eroxii quotation or invoice.", False, None),
     "404.html": ("Page not found | Eroxii", "This page could not be found.", False, None),
@@ -36,7 +36,7 @@ BUSINESS = {
     "@id": f"{SITE}/#business",
     "name": "Eroxii",
     "alternateName": "Eroxii Digital Studio",
-    "description": "Digital marketing, design and web development agency in Colombo, Sri Lanka.",
+    "description": "Web design, digital marketing and app development agency based in Colombo, Sri Lanka, serving clients worldwide.",
     "url": f"{SITE}/",
     "logo": f"{SITE}/images/icon-512.png",
     "image": OG_IMAGE,
@@ -44,10 +44,10 @@ BUSINESS = {
     "email": "eroxiilk@gmail.com",
     "foundingDate": "2021",
     "address": {"@type": "PostalAddress", "addressLocality": "Colombo", "addressCountry": "LK"},
-    "areaServed": [{"@type": "Country", "name": "Sri Lanka"}, "Worldwide"],
+    "areaServed": [{"@type": "Place", "name": "Worldwide"}, {"@type": "Country", "name": "Sri Lanka"}, {"@type": "Country", "name": "United Kingdom"}, {"@type": "Country", "name": "United States"}, {"@type": "Country", "name": "Australia"}, {"@type": "Country", "name": "Canada"}, {"@type": "Country", "name": "United Arab Emirates"}, {"@type": "Country", "name": "Qatar"}, {"@type": "Country", "name": "Saudi Arabia"}, {"@type": "Country", "name": "Maldives"}, {"@type": "Country", "name": "India"}, {"@type": "Country", "name": "Singapore"}],
     "knowsLanguage": ["en", "si", "ta"],
     "contactPoint": {"@type": "ContactPoint", "telephone": "+94779730549", "contactType": "sales",
-                     "areaServed": "LK", "availableLanguage": ["English", "Sinhala", "Tamil"]},
+                     "areaServed": "Worldwide", "availableLanguage": ["English", "Sinhala", "Tamil"]},
 }
 
 
@@ -55,7 +55,7 @@ def services_catalog():
     src = (ROOT / "assets/data.js").read_text(encoding="utf-8")
     names = re.findall(r'\{t:"([^"]+)",c:"[^"]+",i:"[^"]+",d:"([^"]+)"', src.split("const SERVICES=[", 1)[1].split("];", 1)[0])
     return {"@type": "OfferCatalog", "name": "Digital services",
-            "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": n, "description": d, "areaServed": "LK"}} for n, d in names]}
+            "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": n, "description": d, "areaServed": "Worldwide"}} for n, d in names]}
 
 
 def faq():
@@ -72,11 +72,11 @@ def block(name, title, desc, indexed):
     if title:
         tags += [f'<link rel="canonical" href="{url}">',
                  '<meta property="og:type" content="website">', '<meta property="og:site_name" content="Eroxii">',
-                 '<meta property="og:locale" content="en_LK">', f'<meta property="og:url" content="{url}">',
+                 '<meta property="og:locale" content="en_US">', '<meta property="og:locale:alternate" content="en_GB">', '<meta property="og:locale:alternate" content="en_LK">',
+                 f'<link rel="alternate" hreflang="en" href="{url}">', f'<link rel="alternate" hreflang="x-default" href="{url}">', f'<meta property="og:url" content="{url}">',
                  f'<meta property="og:title" content="{e(title)}">', f'<meta property="og:description" content="{e(desc)}">']
     tags += [f'<meta property="og:image" content="{OG_IMAGE}">', '<meta property="og:image:width" content="1200">',
              '<meta property="og:image:height" content="630">', '<meta name="twitter:card" content="summary_large_image">',
-             '<meta name="geo.region" content="LK-1">', '<meta name="geo.placename" content="Colombo">',
              '<link rel="icon" href="images/favicon.svg" type="image/svg+xml">', '<link rel="icon" href="images/icon-192.png" sizes="192x192">',
              '<link rel="apple-touch-icon" href="images/apple-touch-icon.png">']
     if not indexed:
