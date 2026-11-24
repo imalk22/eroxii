@@ -34,12 +34,12 @@ $("#case").innerHTML=`
       ${links?`<div class="ctas r" style="--d:4;justify-content:flex-start">${links}</div>`:""}</div>
     <div class="case-facts r" style="--d:3">
       <div class="g"><b>Type</b><span>${CAT_LABEL[p.cat]}</span></div>
-      <div class="g"><b>Status</b><span>${p.url?"Live":p.gh?"Open source":"Delivered"}</span></div>
+      <div class="g"><b>Status</b><span>${p.url?"Live":p.cat==="web"?"Concept design":p.gh?"Open source":"Delivered"}</span></div>
       <div class="g" style="grid-column:span 2"><b>Stack</b><span>${p.tags.join(" · ")}</span></div>
     </div>
   </div>
-  <div class="case-cover g r" style="--d:4;${m?"":`background:color-mix(in srgb,var(--c) 12%,transparent)`}">
-    ${m?`<img src="concepts/tools/${m.shot}-desk-1.png" alt="${esc(p.t)} home page">`:`<span class="ic">${ico(p.i)}</span>`}
+  <div class="case-cover g r" style="--d:4;${m||p.cover?"":`background:color-mix(in srgb,var(--c) 12%,transparent)`}">
+    ${m?`<img src="concepts/tools/${m.shot}-desk-1.png" alt="${esc(p.t)} home page">`:p.cover?`<img src="${p.cover}" alt="${esc(p.t)} home page">`:`<span class="ic">${ico(p.i)}</span>`}
   </div>
 </div></section>
 <section style="padding-top:0"><div class="wrap">

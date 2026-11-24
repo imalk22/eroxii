@@ -56,10 +56,28 @@ const PROJECTS=[
    pts:["Cleans and merges inconsistent result sheets automatically.","Pass rates, subject difficulty, repeat attempts and at-risk students.","Student profiles and certificate printing onto pre-printed stock."],tags:["Python","Streamlit"]},
   {t:"NFT Generator",k:"Generative collection tool",cat:"client",c:"--orange",i:"layers",gh:"NFTGenerator-Generative_NFT_Collection_Tool",d:"Combines weighted trait layers into thousands of unique NFT images, with rarity control.",
    pts:["Composites background, body, eyes and accessory layers.","Weighted rarity per trait.","Outputs ERC-721-style metadata that's ready for launch."],tags:["Python","NFT"]},
-  {t:"Project Ezekiel",k:"Behaviour profiling · Team",cat:"security",c:"--indigo",i:"shield",d:"Detects unusual behaviour on IoT networks and endpoints using a One-Class SVM model.",
-   pts:["Model trained on the CICIDS 2017 and ToN_IoT datasets.","Built the Supabase tables and fixed the row-level security issues.","Python agents send data from Windows and Kali Linux machines.","PowerShell automates agent install and service setup."],tags:["Python","Supabase","OSquery"]},
-  {t:"PitLane Software",k:"SaaS business · Team",cat:"security",c:"--red",i:"car",d:"A company website for AutoServe, a white-label vehicle service booking platform for garages.",
-   pts:["Wrote the Value Proposition Canvas and Capital Required sections of the business plan.","Three pricing plans, checkout with GST and invoice generation.","Interactive demo, live chat and a customer dashboard."],tags:["React","TypeScript","Vite"]},
+  {t:"CITSL",k:"Professional institute website",cat:"client",c:"--blue",i:"cap",url:"https://citsl.lk",d:"Website for the Chartered Institute of Taxation of Sri Lanka, the statutory body for tax professionals, with its chartered tax courses and member information.",
+   pts:["Clear pathways through the chartered tax course levels.","Course, membership and institute information in one place.","Responsive layout that works for students on mobile."],tags:["Website","Education"]},
+  {t:"Keystone Realty",k:"Real estate website",cat:"web",c:"--purple",i:"grid",cover:"concepts/out/keystone/keystone-01.jpg",d:"Property site for villas, apartments and land with fast search, maps and agent profiles.",
+   pts:["Instant search across buy, rent and new projects.","Map view for every listing.","Agent profiles and enquiry forms."],tags:["Next.js","Algolia","Mapbox"]},
+  {t:"Ironcrest Builders",k:"Construction company website",cat:"web",c:"--orange",i:"box",cover:"concepts/out/ironcrest/ironcrest-01.jpg",d:"Commercial and residential builder site with a filterable project portfolio, safety record and quote requests.",
+   pts:["Project portfolio filtered by sector, city and status.","Safety record and delivery stats up front.","Quote request flow and careers page."],tags:["Next.js","Sanity CMS","Tailwind"]},
+  {t:"Petalry",k:"Flower delivery e-commerce",cat:"web",c:"--pink",i:"bag",cover:"concepts/out/petalry/petalry-01.jpg",d:"Online flower shop with same-day delivery across Colombo, subscriptions and order tracking.",
+   pts:["Shop by occasion with same-day delivery slots.","Flower subscriptions and wedding enquiries.","Order tracking and email follow-ups."],tags:["Shopify","PayHere","Klaviyo"]},
+  {t:"Apex Arena",k:"Sports academy website",cat:"web",c:"--green",i:"target",cover:"concepts/out/apex/apex-01.jpg",d:"Booking and membership site for a multi-sport arena with football, cricket, futsal and swimming academies.",
+   pts:["Academy programmes for every age group.","Fixtures, facilities and floodlit pitch booking.","Online membership with card payments."],tags:["React","Node.js","Stripe"]},
+  {t:"Northline Logistics",k:"Logistics company website",cat:"web",c:"--indigo",i:"car",cover:"concepts/out/northline/northline-01.jpg",d:"Freight, warehousing and last-mile delivery site with live shipment tracking.",
+   pts:["Services for trucking, bonded warehousing and same-day delivery.","Shipment tracking by reference number.","Island-wide network map."],tags:["Next.js","PostgreSQL","Mapbox"]},
+  {t:"BrightSmile Dental",k:"Dental clinic website",cat:"web",c:"--blue",i:"spark",cover:"concepts/out/brightsmile/brightsmile-01.jpg",d:"Family and cosmetic dental clinic site with treatments, clear prices and online appointments.",
+   pts:["Treatment pages with upfront pricing.","Dentist profiles and evening appointment booking.","SMS reminders for booked patients."],tags:["Next.js","Supabase","Twilio SMS"]},
+  {t:"Lotus Bay Resort",k:"Hotel & resort website",cat:"web",c:"--teal",i:"pin",cover:"concepts/out/lotusbay/lotusbay-01.jpg",d:"Beachfront resort site with room showcases, dining, experiences and direct booking.",
+   pts:["Rooms and suites with galleries and rates.","Experiences, dining and seasonal offers.","Direct booking to cut OTA commission."],tags:["Next.js","Headless WordPress","Booking API"]},
+  {t:"Ember & Oak",k:"Restaurant website",cat:"web",c:"--red",i:"candle",cover:"concepts/out/emberoak/emberoak-01.jpg",d:"Wood-fired restaurant site with a seasonal menu, table reservations, events and online ordering.",
+   pts:["Seasonal menu that staff can update themselves.","Table reservations and private events.","Online ordering with local payments."],tags:["Next.js","Sanity CMS","PayHere"]},
+  {t:"Voltway Motors",k:"EV dealership website",cat:"web",c:"--green",i:"car",cover:"concepts/out/voltway/voltway-01.jpg",d:"Electric vehicle dealership site with model pages, test-drive booking, charging and finance info.",
+   pts:["Interactive model pages with specs and range.","Test drive booking and finance calculator.","Home charging and service information."],tags:["Next.js","Three.js","Stripe"]},
+  {t:"Brightpath Academy",k:"Education institute website",cat:"web",c:"--orange",i:"cap",cover:"concepts/out/brightpath/brightpath-01.jpg",d:"College site for IT, business and language courses with admissions and a student portal.",
+   pts:["Course catalogue with weekend and online batches.","Online admissions and enquiry flow.","Student portal for enrolled learners."],tags:["Laravel","MySQL","Tailwind"]},
   {t:"Cloud & Virtualisation",k:"Azure · Docker · Hyper-V",cat:"security",c:"--teal",i:"cloud",d:"Windows Server on Azure, WordPress in Docker, and a high-availability Hyper-V cluster.",
    pts:["Windows Server 2022 deployed on Microsoft Azure.","Migrated WordPress into Docker and published the image to Docker Hub.","A Hyper-V high-availability cluster that keeps services running if a server fails."],tags:["Azure","Docker","Hyper-V"]}
 ];
@@ -90,7 +108,7 @@ const SERVICE_DETAILS=[
 ];
 // Case-study extras keyed by project title: live screenshot id + matching Web Tools slides.
 const CASE_MEDIA={"Genetics Fitness":{shot:"genetics",slides:[4,5,6]},"TinWise":{shot:"tinwise",slides:[1,2,3]},"Bitloom":{shot:"bitloom",slides:[7,8]},"CIT Student Hub":{shot:"cithub",slides:[9]}};
-const CAT_LABEL={client:"Client project",product:"Product",security:"Security & cloud"};
+const CAT_LABEL={client:"Client project",web:"Website concept",product:"Product",security:"Security & cloud"};
 PROJECTS.forEach(p=>p.slug=slug(p.t));
 
 /* ===== People ===== */

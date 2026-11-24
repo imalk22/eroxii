@@ -2,6 +2,16 @@
 // Load synchronously right after <body>; page scripts can then use $, $$, esc, ico, col, io, watch, toast.
 (function(){try{const s=localStorage.getItem("theme");if(s)document.documentElement.dataset.theme=s}catch(e){}})();
 const PAGES=[["services.html","Services"],["work.html","Work"],["how-we-work.html","How we work"],["about.html","About us"],["index.html#faq","FAQ"],["contact.html","Contact"]];
+/* Loading screen: full on the first page of a visit, a quick fade after that. */
+(function(){let seen=false;try{seen=sessionStorage.getItem("ld")==="1";sessionStorage.setItem("ld","1")}catch(e){}
+  document.body.insertAdjacentHTML("afterbegin",`<div class="loader${seen?" quick":""}" id="loader" role="status" aria-label="Loading"><div class="ld-in">
+    <svg class="ld-logo" viewBox="0 0 24 24"><path d="M4 3.2c0-.8.9-1.3 1.6-.9l15.3 8.8c.7.4.7 1.4 0 1.8L5.6 21.7c-.7.4-1.6-.1-1.6-.9v-5.5c0-.4.2-.7.5-.9L10 12 4.5 9.6A1 1 0 0 1 4 8.7Z" fill="url(#ldg)"/><defs><linearGradient id="ldg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00c8ff"/><stop offset=".55" stop-color="#7b4dff"/><stop offset="1" stop-color="#ff3dd6"/></linearGradient></defs></svg>
+    <div class="ld-word">eroxii</div><div class="ld-bar"><i></i></div></div></div>`);
+  const t0=performance.now(),min=seen?0:900;
+  const done=()=>{const l=document.getElementById("loader");if(!l||l.classList.contains("out"))return;
+    setTimeout(()=>{l.classList.add("out");setTimeout(()=>l.remove(),700)},Math.max(0,min-(performance.now()-t0)))};
+  addEventListener("load",done);setTimeout(done,4000);addEventListener("pageshow",e=>{if(e.persisted)done()});
+})();
 document.body.insertAdjacentHTML("afterbegin",`<svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <linearGradient id="brandg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00c8ff"/><stop offset=".55" stop-color="#7b4dff"/><stop offset="1" stop-color="#ff3dd6"/></linearGradient>
@@ -48,8 +58,12 @@ document.body.insertAdjacentHTML("afterbegin",`<svg width="0" height="0" style="
 <header class="nav" id="nav"><div class="wrap">
   <a href="index.html" class="brand" aria-label="Eroxii, home"><svg><use href="#logo"/></svg>eroxii</a>
   <nav class="nav-links" aria-label="Pages">${PAGES.map(([h,t])=>`<a href="${h}"${h===document.body.dataset.page+".html"?' aria-current="page"':""}>${t}</a>`).join("")}</nav>
-  <div class="nav-right"><button class="icon-btn" id="theme" aria-label="Toggle dark mode"></button><a href="contact.html" class="btn btn-primary btn-sm">Get a quote</a></div>
-</div></header>`);
+  <div class="nav-right"><button class="icon-btn" id="theme" aria-label="Toggle dark mode"></button><a href="contact.html" class="btn btn-primary btn-sm">Get a quote</a>
+    <button class="icon-btn burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button></div>
+</div></header>
+<div class="menu-dim" id="menuDim"></div>
+<nav class="menu" id="menu" aria-label="Menu" aria-hidden="true">${PAGES.map(([h,t],i)=>`<a href="${h}" style="--i:${i}"${h===document.body.dataset.page+".html"?' aria-current="page"':""}>${t}<svg class="i"><use href="#i-chev-r"/></svg></a>`).join("")}
+  <a href="contact.html" class="btn btn-primary" style="--i:${PAGES.length}">Get a free quote</a></nav>`);
 /* ===== Helpers ===== */
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
@@ -64,6 +78,15 @@ const root=document.documentElement,tb=$("#theme");
 const isDark=()=>root.dataset.theme?root.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;
 const syncIcon=()=>tb.innerHTML=ico(isDark()?"sun":"moon");
 syncIcon();tb.onclick=()=>{root.dataset.theme=isDark()?"light":"dark";try{localStorage.setItem("theme",root.dataset.theme)}catch(e){}syncIcon()};
+
+/* Mobile menu */
+const burger=$("#burger"),menu=$("#menu");
+const setMenu=o=>{document.documentElement.classList.toggle("menu-open",o);burger.setAttribute("aria-expanded",o);burger.setAttribute("aria-label",o?"Close menu":"Open menu");menu.setAttribute("aria-hidden",!o)};
+burger.onclick=()=>setMenu(!document.documentElement.classList.contains("menu-open"));
+$("#menuDim").onclick=()=>setMenu(false);
+menu.addEventListener("click",e=>{if(e.target.closest("a"))setMenu(false)});
+addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
+matchMedia("(min-width:981px)").addEventListener("change",e=>{if(e.matches)setMenu(false)});
 
 /* Copy + toast */
 const toast=(t)=>{$("#toastTxt").textContent=t;$("#toast").classList.add("show");setTimeout(()=>$("#toast").classList.remove("show"),1800)};
