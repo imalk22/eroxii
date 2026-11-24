@@ -82,6 +82,7 @@ def block(name, title, desc, indexed):
     if not indexed:
         tags.append('<meta name="robots" content="noindex">')
     if name == "index.html":
+        tags.append('<meta name="msvalidate.01" content="750A2CE731771C964A707BC500D1311F">')  # Bing Webmaster Tools
         biz = dict(BUSINESS, hasOfferCatalog=services_catalog())
         tags.append(f'<script type="application/ld+json">{json.dumps(biz, ensure_ascii=False)}</script>')
         tags.append(f'<script type="application/ld+json">{json.dumps(faq(), ensure_ascii=False)}</script>')
