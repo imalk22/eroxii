@@ -121,9 +121,13 @@ const FOUNDER={name:"Imesh Samintha",role:"Founder & Lead Strategist",photo:"ima
 // Team members: add real people only, with their permission. One object each, photo in images/team/.
 // Example: {name:"Full Name",role:"Graphic Designer",photo:"images/team/name.jpg",line:"Posts, ads & brand kits",in:"https://linkedin.com/in/…"}
 const TEAM=[
- {name:"Rashika Dissanayake",photo:"images/team/rashika.jpg"},
- {name:"Lasan Pathirana",photo:"images/team/lasan.jpg"},
+ {name:"Ayodha Silva",photo:"images/team/ayodha.jpg"},
  {name:"Tharun Weerasooriya",photo:"images/team/tharun.jpg"},
+ {name:"Lasan Pathirana",photo:"images/team/lasan.jpg"},
+ {name:"Amod Silva",photo:"images/team/amod.jpg"},
+ {name:"Rathika Edirisinghe",photo:"images/team/rathika.jpg"},
+ {name:"Rashika Dissanayake",photo:"images/team/rashika.jpg"},
+ {name:"Ruwan De Zoysa",photo:"images/team/ruwan.jpg"},
  {name:"Pavan Abeysooriya",photo:"images/team/pavan.jpg"},
- {name:"Dinithi Zoysa",photo:"images/team/dinithi.jpg"},
+ {name:"Ameesha Pathirana",photo:"images/team/ameesha.jpg"},
 ];
