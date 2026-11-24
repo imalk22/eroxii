@@ -116,7 +116,7 @@ table.li{width:100%;border-collapse:collapse;font-size:1.45cqw}
           <div class="field"><label for="q-disc">Discount %</label><input id="q-disc" name="disc" type="number" min="0" max="100" step="0.5" value="0"></div>
           <div class="field"><label for="q-tax">Tax / VAT %</label><input id="q-tax" name="tax" type="number" min="0" max="100" step="0.5" value="0"></div>
         </div>
-        <div class="field"><label for="q-dep">Deposit to start (%)</label><input id="q-dep" name="dep" type="number" min="0" max="100" step="5" value="50"></div>
+        <div class="field"><label for="q-dep">Deposit to start (%)</label><input id="q-dep" name="dep" type="number" min="0" max="100" step="5" value="20"></div>
 
         <h3>Notes & terms</h3>
         <div class="field"><label for="q-notes">Notes for the client</label><textarea id="q-notes" name="notes" placeholder="Timeline, what's included, anything the client should know"></textarea></div>
@@ -147,10 +147,10 @@ const load=k=>{try{return JSON.parse(localStorage.getItem(k))||null}catch(e){ret
 const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
 const iso=d=>new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10);
 const addDays=(s,n)=>{const d=new Date(s);d.setDate(d.getDate()+n);return iso(d)};
-const DEF_TERMS="50% deposit to start, balance on completion before launch or final files.\nIncludes 2 rounds of revisions.\nThird-party costs (ad spend, domain, hosting) are paid by the client.\nWork is covered by Eroxii's Client Service Agreement and Terms (eroxii.space/terms).";
+const DEF_TERMS="20% deposit to start, balance on completion before launch or final files.\nIncludes 2 rounds of revisions.\nThird-party costs (ad spend, domain, hosting) are paid by the client.\nWork is covered by Eroxii's Client Service Agreement and Terms (eroxii.space/terms).";
 const nextNo=t=>{const d=new Date(),y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,"0");return `${t==="Invoice"?"INV":"QT"}-${y}${m}-${String(Math.floor(Math.random()*900)+100)}`};
 const fresh=()=>{const today=iso(new Date());return{type:"Quotation",no:nextNo("Quotation"),date:today,valid:addDays(today,30),cname:"",ccomp:"",cmail:"",cphone:"",caddr:"",proj:"",
-  cur:"LKR",disc:0,tax:0,dep:50,notes:"",terms:DEF_TERMS,items:[{svc:SERVICES[5].t,desc:"",qty:1,price:""}]}};
+  cur:"LKR",disc:0,tax:0,dep:20,notes:"",terms:DEF_TERMS,items:[{svc:SERVICES[5].t,desc:"",qty:1,price:""}]}};
 let Q=load(KEY)||fresh();
 const S=Object.assign({bank:"",by:""},load(SET));
 const prices=load(PRICE)||{};
